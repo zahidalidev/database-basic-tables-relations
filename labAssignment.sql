@@ -22,7 +22,7 @@ CREATE TABLE LOCATIONS(
 	CITY VARCHAR(30),
 	STATE_PROVINCE VARCHAR(50),
 	COUNTRY_ID CHAR(2) foreign key references COUNTRIES(COUNTRY_ID)
-)
+)   
 
 CREATE TABLE DEPARTMENTS(
 	DEPARTMENT_ID INT PRIMARY KEY,
@@ -39,7 +39,7 @@ CREATE TABLE EMPLOYEES(
 	PHONE_NUMBER VARCHAR(20),
 	HIRE_DATE DATE,
 	JOB_ID VARCHAR(10) FOreign key references JOBS(JOB_ID),
-	SALARY INT,
+	SALARY INT FOreign key references EMPLOYEES(EMPLOYEE_ID),
 	COMMISION_PCT FLOAT(24),
 	MANAGER_ID INT UNIQUE,
 	DEPARTMENT_ID INT foreign key references DEPARTMENTS(DEPARTMENT_ID),
@@ -47,6 +47,7 @@ CREATE TABLE EMPLOYEES(
 
 ALTER TABLE DEPARTMENTS
    ADD FOREIGN KEY (MANAGER_ID) REFERENCES EMPLOYEES(MANAGER_ID);
+
 
 
 CREATE TABLE JOB_HISTORY(
@@ -97,349 +98,242 @@ INSERT INTO locations VALUES (2500, 'Magdalen Centre, The Oxford Science Park', 
 
 /* -------------------- DEPARTMENTS TABLE -------------------- */ 
 
-INSERT INTO departments VALUES   
-        ( 10  
-        , 'Administration'  
-        , 200  
-        , 1700  
-        );  
-  
-INSERT INTO departments VALUES   
-        ( 20  
-        , 'Marketing'  
-        , 201  
-        , 1800  
-        );                    
-  
-INSERT INTO departments VALUES   
-        ( 50  
-        , 'Shipping'  
-        , 124  
-        , 1500  
-        );  
-		     
-INSERT INTO departments VALUES   
-        ( 60   
-        , 'IT'  
-        , 103  
-        , 1400  
-        );  
-                  
-INSERT INTO departments VALUES   
-        ( 80   
-        , 'Sales'  
-        , 149  
-        , 2500  
-        );  
-                  
-INSERT INTO departments VALUES   
-        ( 90   
-        , 'Executive'  
-        , 100  
-        , 1700  
-        );  
-  
-    
-INSERT INTO departments VALUES   
-        ( 110   
-        , 'Accounting'  
-        , 205  
-        , 1700  
-        );  
-  
-INSERT INTO departments VALUES   
-        ( 190   
-        , 'Contracting'  
-        , NULL  
-        , 1700  
-        );
-		
+ 
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 10, 'Administration');  
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 20, 'Marketing');                    
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 50, 'Shipping');  
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 60, 'IT');  
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 80, 'Sales');  
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 90, 'Executive');                    
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 110, 'Accounting');  
+INSERT INTO departments (DEPARTMENT_ID, DEPARTMENT_NAME) VALUES ( 190, 'Contracting' );
+                  		
 /* -------------------- EMPLOLYEES TABLE -------------------- */ 
 
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 100  
         , 'Steven'  
         , 'King'  
         , 'SKING'  
         , '515.123.4567'  
-        , '1987-jun-17'   /* YY-MM-DD */
-        , 'AD_PRES'  
-        , 24000  
+        , '1987-jun-17'   /* YY-MM-DD */  
         , NULL  
         , NULL  
-        , 90  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES 
         ( 101  
         , 'Neena'  
         , 'Kochhar'  
         , 'NKOCHHAR'  
         , '515.123.4568'  
         , '1989-sep-21'   /* YY-MM-DD */
-        , 'AD_VP'  
-        , 17000  
         , NULL  
-        , 100  
-        , 90  
+        , 100    
         );  
   
-INSERT INTO employees VALUES   
-        ( 102  
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
+        ( 109  
         , 'Lex'  
         , 'De Haan'  
         , 'LDEHAAN'  
         , '515.123.4569'  
-        , '1993-jan-13'   /* YY-MM-DD */ 
-        , 'AD_VP'  
-        , 17000  
+        , '1993-jan-13'   /* YY-MM-DD */   
         , NULL  
-        , 100  
-        , 90  
+        , 180   
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 103  
         , 'Alexander'  
         , 'Hunold'  
         , 'AHUNOLD'  
         , '590.423.4567'  
-        , '1990-january-3'   /* YY-MM-DD */  
-        , 'IT_PROG'  
-        , 9000  
+        , '1990-january-3'   /* YY-MM-DD */    
         , NULL  
-        , 102  
-        , 60  
+        , 102 
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 104  
         , 'Bruce'  
         , 'Ernst'  
         , 'BERNST'  
         , '590.423.4568'  
-        , '1991-may-21'   /* YY-MM-DD */  
-        , 'IT_PROG'  
-        , 6000  
+        , '1991-may-21'   /* YY-MM-DD */    
         , NULL  
-        , 103  
-        , 60  
+        , 103 
         );  
   
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 107  
         , 'Diana'  
         , 'Lorentz'  
         , 'DLORENTZ'  
         , '590.423.5567'  
-        , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'IT_PROG'  
-        , 4200  
+        , '1999-feb-07'   /* YY-MM-DD */   
         , NULL  
-        , 103  
-        , 60  
+        , 113   
         );  
   
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 124  
         , 'Kevin'  
         , 'Mourgos'  
         , 'KMOURGOS'  
         , '650.123.5234'  
         , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'ST_MAN'  
-        , 5800  
         , NULL  
-        , 100  
-        , 50  
+        , 109  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 141  
         , 'Trenna'  
         , 'Rajs'  
         , 'TRAJS'  
         , '650.121.8009'  
-        , '1999-feb-07'   /* YY-MM-DD */  
-        , 'ST_CLERK'  
-        , 3500  
+        , '1999-feb-07'   /* YY-MM-DD */   
         , NULL  
         , 124  
-        , 50  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 142  
         , 'Curtis'  
         , 'Davies'  
         , 'CDAVIES'  
         , '650.121.2994'  
-        , '1999-feb-07'   /* YY-MM-DD */   
-        , 'ST_CLERK'  
-        , 3100  
+        , '1999-feb-07'   /* YY-MM-DD */     
         , NULL  
         , 124  
-        , 50  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 143  
         , 'Randall'  
         , 'Matos'  
         , 'RMATOS'  
         , '650.121.2874'  
         , '1999-feb-07'   /* YY-MM-DD */  
-        , 'ST_CLERK'  
-        , 2600  
         , NULL  
-        , 124  
-        , 50  
+        , 134  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 144  
         , 'Peter'  
         , 'Vargas'  
         , 'PVARGAS'  
         , '650.121.2004'  
-        , '1999-feb-07'   /* YY-MM-DD */   
-        , 'ST_CLERK'  
-        , 2500  
+        , '1999-feb-07'   /* YY-MM-DD */  
         , NULL  
-        , 124  
-        , 50  
+        , 194  
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 149  
         , 'Eleni'  
         , 'Zlotkey'  
         , 'EZLOTKEY'  
         , '011.44.1344.429018'  
-        , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'SA_MAN'  
-        , 10500  
+        , '1999-feb-07'   /* YY-MM-DD */  
         , .2  
-        , 100  
-        , 80  
+        , 111   
         );  
   
 
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 174  
         , 'Ellen'  
         , 'Abel'  
         , 'EABEL'  
         , '011.44.1644.429267'  
         , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'SA_REP'  
-        , 11000  
         , .30  
-        , 149  
-        , 80  
+        , 149   
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 176  
         , 'Jonathon'  
         , 'Taylor'  
         , 'JTAYLOR'  
         , '011.44.1644.429265'  
-        , '1999-feb-07'   /* YY-MM-DD */  
-        , 'SA_REP'  
-        , 8600  
+        , '1999-feb-07'   /* YY-MM-DD */    
         , .20  
-        , 149  
-        , 80  
+        , 249   
         );  
   
 
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 178  
         , 'Kimberely'  
         , 'Grant'  
         , 'KGRANT'  
         , '011.44.1644.429263'  
         , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'SA_REP'  
-        , 7000  
         , .15  
-        , 149  
-        , NULL  
+        , 141  
         );  
   
 
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 200  
         , 'Jennifer'  
         , 'Whalen'  
         , 'JWHALEN'  
         , '515.123.4444'  
-        , '1999-feb-07'   /* YY-MM-DD */  
-        , 'AD_ASST'  
-        , 4400  
+        , '1999-feb-07'   /* YY-MM-DD */   
         , NULL  
-        , 101  
-        , 10  
+        , 101   
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 201  
         , 'Michael'  
         , 'Hartstein'  
         , 'MHARTSTE'  
         , '515.123.5555'  
-        , '1999-feb-07'   /* YY-MM-DD */   
-        , 'MK_MAN'  
-        , 13000  
+        , '1999-feb-07'   /* YY-MM-DD */     
         , NULL  
-        , 100  
-        , 20  
+        , 170   
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 202  
         , 'Pat'  
         , 'Fay'  
         , 'PFAY'  
         , '603.123.6666'  
-        , '1999-feb-07'   /* YY-MM-DD */  
-        , 'MK_REP'  
-        , 6000  
+        , '1999-feb-07'   /* YY-MM-DD */   
         , NULL  
-        , 201  
-        , 20  
+        , 201   
         );  
   
 
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 205  
         , 'Shelley'  
         , 'Higgins'  
         , 'SHIGGINS'  
         , '515.123.8080'  
         , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'AC_MGR'  
-        , 12008  
         , NULL  
-        , 101  
-        , 110  
+        , 301    
         );  
   
-INSERT INTO employees VALUES   
+INSERT INTO employees (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, COMMISION_PCT, MANAGER_ID ) VALUES   
         ( 206  
         , 'William'  
         , 'Gietz'  
         , 'WGIETZ'  
         , '515.123.8181'  
         , '1999-feb-07'   /* YY-MM-DD */ 
-        , 'AC_ACCOUNT'  
-        , 8300  
         , NULL  
         , 205  
-        , 110  
         );  
 		
 /* -------------------- JOBS TABLE -------------------- */
@@ -530,117 +424,104 @@ INSERT INTO jobs VALUES
 
 /* -------------------- JOB_GRADES TABLE -------------------- */
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'A' 
         , 1000  
         , 2999  
         );
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'B' 
         , 3000  
         , 5999  
         );  		   
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'C' 
         , 6000  
         , 9999  
         );  
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'D' 
         , 10000  
         , 14999  
         );  
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'E' 
         , 15000  
         , 24999  
         );  
 
-INSERT INTO jobs VALUES   
+INSERT INTO JOB_GRADES VALUES   
         ( 'F' 
         , 25000  
         , 40000  
         );  
 	
 /* -------------------- JOB_HISTORY TABLE -------------------- */
+INSERT INTO job_history (STARTING_DATE, ENDING_DATE) 
+VALUES ( '1999-feb-07'   /* YY-MM-DD */
+       , '2020-feb-01'   /* YY-MM-DD */ 
+	   ); 
 
-INSERT INTO job_history  
-VALUES (102  
-       , '1999-feb-07'   /* YY-MM-DD */
+INSERT INTO job_history (STARTING_DATE, ENDING_DATE) 
+VALUES (  
+        '1999-feb-07'   /* YY-MM-DD */
        , '2020-feb-01'   /* YY-MM-DD */   
-       , 'IT_PROG'  
-       , 60);  
+       );  
   
-INSERT INTO job_history  
-VALUES (101  
-       , '1999-feb-07'   /* YY-MM-DD */ 
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES (  
+        '1999-feb-07'   /* YY-MM-DD */ 
        , '2020-feb-01'   /* YY-MM-DD */   
-       , 'AC_ACCOUNT'  
-       , 110);  
+       );  
   
-INSERT INTO job_history  
-VALUES (101  
-       , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES (  
+        '1999-feb-07'   /* YY-MM-DD */  
        , '2020-feb-01'   /* YY-MM-DD */   
-       , 'AC_MGR'  
-       , 110);  
+       );  
   
-INSERT INTO job_history  
-VALUES (201  
-       , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES (  
+        '1999-feb-07'   /* YY-MM-DD */  
        , '2020-feb-01'   /* YY-MM-DD */   
-       , 'MK_REP'  
-       , 20);  
+       );  
   
-INSERT INTO job_history  
-VALUES  (114  
-        , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  ( '1999-feb-07'   /* YY-MM-DD */  
         , '2020-feb-01'   /* YY-MM-DD */   
-        , 'ST_CLERK'  
-        , 50  
         );  
   
-INSERT INTO job_history  
-VALUES  (122  
-        , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  (  
+         '1999-feb-07'   /* YY-MM-DD */  
         , '2020-feb-01'   /* YY-MM-DD */   
-        , 'ST_CLERK'  
-        , 50  
         );  
   
-INSERT INTO job_history  
-VALUES  (200  
-        , '1999-feb-07'   /* YY-MM-DD */  
-        , '2020-feb-01'   /* YY-MM-DD */ 
-        , 'AD_ASST'  
-        , 90  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  ( 
+         '1999-feb-07'   /* YY-MM-DD */  
+        , '2020-feb-01'   /* YY-MM-DD */   
         );  
   
-INSERT INTO job_history  
-VALUES  (176  
-        , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  (
+        '1999-feb-07'   /* YY-MM-DD */  
 		, '2020-feb-01'   /* YY-MM-DD */ 
-        , 'SA_REP'  
-        , 80  
         );  
   
-INSERT INTO job_history  
-VALUES  (176  
-        , '1999-feb-07'   /* YY-MM-DD */  
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  (  
+         '1999-feb-07'   /* YY-MM-DD */  
         , '2020-feb-01'   /* YY-MM-DD */   
-        , 'SA_MAN'  
-        , 80  
         );  
   
-INSERT INTO job_history  
-VALUES  (200  
-        , '1999-feb-07'   /* YY-MM-DD */
+INSERT INTO job_history  (STARTING_DATE, ENDING_DATE)
+VALUES  (
+         '1999-feb-07'   /* YY-MM-DD */
         , '2020-feb-01'   /* YY-MM-DD */ 
-        , 'AC_ACCOUNT'  
-        , 90  
 	);
 	
